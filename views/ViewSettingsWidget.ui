@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ViewSettingsWidget</class>
+ <widget class="QWidget" name="ViewSettingsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>419</width>
+    <height>578</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="minimumSize">
+      <size>
+       <width>300</width>
+       <height>300</height>
+      </size>
+     </property>
+     <property name="currentIndex">
+      <number>2</number>
+     </property>
+     <widget class="QWidget" name="config_tab">
+      <attribute name="title">
+       <string>Configuration</string>
+      </attribute>
+      <widget class="QCheckBox" name="showTagHistory">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>380</y>
+         <width>109</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Show Tag History</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="tagHistoryN">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>380</y>
+         <width>51</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>128</number>
+       </property>
+       <property name="value">
+        <number>20</number>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="showTagTable">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>430</y>
+         <width>109</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Show Tag Table</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="showAnchorTable">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>460</y>
+         <width>109</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Show Anchor Table</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="showAnchorTagCorrectionTable">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>490</y>
+         <width>191</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Show Anchor-Tag Correction Table</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="showNavigationMode">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>20</y>
+         <width>151</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tracking/Navigation Mode</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QComboBox" name="filtering">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>260</y>
+         <width>111</width>
+         <height>22</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_z1_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>260</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Filtering options:</string>
+       </property>
+      </widget>
+      <widget class="QCheckBox" name="useAutoPos">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>210</y>
+         <width>161</width>
+         <height>17</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Use Auto - Positioning</string>
+       </property>
+       <property name="checked">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_logingstatus">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>300</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Logging:</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="logging_pb">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>300</y>
+         <width>111</width>
+         <height>23</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Start</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_logingstatus_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>400</y>
+         <width>51</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_logfile">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>330</y>
+         <width>211</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Log filename</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_logingstatus_3">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>240</y>
+         <width>51</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="floorplan_tab">
+      <attribute name="title">
+       <string>Floor Plan</string>
+      </attribute>
+     </widget>
+     <widget class="QWidget" name="grid_tab">
+      <attribute name="title">
+       <string>Grid</string>
+      </attribute>
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>9</x>
+         <y>21</y>
+         <width>172</width>
+         <height>111</height>
+        </rect>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QLabel" name="label">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Width (m)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QDoubleSpinBox" name="gridWidth_sb">
+          <property name="decimals">
+           <number>2</number>
+          </property>
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.500000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QLabel" name="label_2">
+          <property name="minimumSize">
+           <size>
+            <width>45</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="text">
+           <string>Height (m)</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <widget class="QDoubleSpinBox" name="gridHeight_sb">
+          <property name="singleStep">
+           <double>0.100000000000000</double>
+          </property>
+          <property name="value">
+           <double>0.500000000000000</double>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0">
+         <widget class="QCheckBox" name="gridShow">
+          <property name="text">
+           <string>Show Grid</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>gridWidth_sb</tabstop>
+  <tabstop>gridHeight_sb</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
