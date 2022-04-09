@@ -34,6 +34,9 @@ public:
 signals:
     void saveViewSettings(void);
 
+public slots:
+    void TCPSendtagPos(quint64 tagId, double x, double y, double z);
+
 protected slots:
     void onReady();
 
@@ -74,8 +77,7 @@ protected slots:
     void on_pushButton_Send_clicked();
     void on_pushButton_Connect_clicked();
 
-//public slots:
-    void TCPSendtagPos(quint64 tagId, double x, double y, double z);
+
 
 private:
     Ui::ViewSettingsWidget *ui;

@@ -26,6 +26,7 @@
 #include <QMessageBox>
 #include <QTcpServer>
 #include <QTcpSocket>
+#include <QString>
 
 ViewSettingsWidget::ViewSettingsWidget(QWidget *parent) :
     QWidget(parent),
@@ -382,6 +383,24 @@ void ViewSettingsWidget::on_pushButton_Connect_clicked()
 void ViewSettingsWidget::TCPSendtagPos(quint64 tagId, double x, double y, double z)
 {
     qDebug()<< "AB:get slot!!!!!!" << endl;
+
+    if (ui->checkBox_send->isChecked())
+    {
+        if (ui->pushButton_connect->text() == tr("disconnect"))
+        {
+
+            QString msg = QString::number(x, 'f', 2);
+            msg.append(",");
+            msg.append(QString::number(y, 'f', 2));
+            msg.append(",");
+            msg.append(QString::number(z, 'f', 2));
+
+            qDebug()<< msg << endl;
+
+            socket->write(msg.toUtf8());
+            socket->flush();
+        }
+    }
 }
 
 

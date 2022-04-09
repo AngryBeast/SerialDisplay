@@ -76,7 +76,7 @@ RTLSDisplayApplication::RTLSDisplayApplication(int &argc, char **argv) : QApplic
 
     //my
    // QObject::connect(_client, SIGNAL(tagPos(quint64,double,double,double)), mainWindow()->viewSettingsWidget(), SLOT(tagPos(quint64,double,double,double)));
-    //QObject::connect(_client,&RTLSClient::tagPos,mainWindow()->viewSettingsWidget(),&ViewSettingsWidget::TCPSendtagPos);
+    QObject::connect(_client,&RTLSClient::tagPos,mainWindow()->viewSettingsWidget(),&ViewSettingsWidget::TCPSendtagPos);
     //发射ready信号 其他组件结束初始化
     emit ready();
 }
