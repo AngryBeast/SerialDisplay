@@ -17,6 +17,7 @@
 #include "RTLSClient.h"
 #include "ViewSettings.h"
 #include "GraphicsWidget.h"
+#include "ViewSettingsWidget.h"
 
 #include <QMetaProperty>
 #include <QDesktopWidget>
@@ -72,6 +73,10 @@ RTLSDisplayApplication::RTLSDisplayApplication(int &argc, char **argv) : QApplic
 
     QObject::connect(_client, SIGNAL(ancRanges(int, int, int)), graphicsWidget(), SLOT(ancRanges(int, int, int)));
 
+
+    //my
+   // QObject::connect(_client, SIGNAL(tagPos(quint64,double,double,double)), mainWindow()->viewSettingsWidget(), SLOT(tagPos(quint64,double,double,double)));
+    //QObject::connect(_client,&RTLSClient::tagPos,mainWindow()->viewSettingsWidget(),&ViewSettingsWidget::TCPSendtagPos);
     //发射ready信号 其他组件结束初始化
     emit ready();
 }

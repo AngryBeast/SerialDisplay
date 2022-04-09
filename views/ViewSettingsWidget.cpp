@@ -20,6 +20,7 @@
 #include "ScaleTool.h"
 #include "GraphicsView.h"
 #include "GraphicsWidget.h"
+#include "RTLSClient.h"
 
 #include <QFileDialog>
 #include <QMessageBox>
@@ -80,6 +81,11 @@ ViewSettingsWidget::ViewSettingsWidget(QWidget *parent) :
     QObject::connect(server,&QTcpServer::newConnection,this,&ViewSettingsWidget::server_New_Connect);
     QObject::connect(ui->pushButton_send,&QPushButton::clicked,this,&ViewSettingsWidget::on_pushButton_Send_clicked);
     QObject::connect(ui->pushButton_connect,&QPushButton::clicked,this,&ViewSettingsWidget::on_pushButton_Connect_clicked);
+
+
+
+    //get data
+    //QObject::connect(RTLSDisplayApplication::_client,&QPushButton::clicked,this,&ViewSettingsWidget::on_pushButton_Connect_clicked);
 
     ui->pushButton_send->setEnabled(false);
     ui->lineEdit_port->setText("8888");
@@ -371,6 +377,11 @@ void ViewSettingsWidget::on_pushButton_Connect_clicked()
         ui->pushButton_send->setEnabled(false);
     }
 
+}
+
+void ViewSettingsWidget::TCPSendtagPos(quint64 tagId, double x, double y, double z)
+{
+    qDebug()<< "AB:get slot!!!!!!" << endl;
 }
 
 
