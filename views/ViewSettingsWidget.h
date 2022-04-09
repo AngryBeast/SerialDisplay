@@ -14,6 +14,8 @@
 #define VIEWSETTINGSWIDGET_H
 
 #include <QWidget>
+#include <QTcpSocket>
+#include <QTcpServer>
 
 namespace Ui {
 class ViewSettingsWidget;
@@ -64,11 +66,22 @@ protected slots:
 
     void setTagHistory(int h);
     void loggingClicked(void);
+
+    //TCP
+    void socket_Read_Data();
+    void socket_Disconnected();
+    void server_New_Connect();
+    void on_pushButton_Send_clicked();
+    void on_pushButton_Connect_clicked();
+
 private:
     Ui::ViewSettingsWidget *ui;
 
     bool _logging ;
     bool _floorplanOpen ;
+    QTcpServer* server;
+    QTcpSocket *socket;
+
 };
 
 #endif // VIEWSETTINGSWIDGET_H

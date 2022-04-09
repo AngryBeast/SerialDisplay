@@ -23,6 +23,8 @@
 
 #include <QFileDialog>
 #include <QMessageBox>
+#include <QTcpServer>
+#include <QTcpSocket>
 
 ViewSettingsWidget::ViewSettingsWidget(QWidget *parent) :
     QWidget(parent),
@@ -39,6 +41,8 @@ ViewSettingsWidget::ViewSettingsWidget(QWidget *parent) :
     //QObject::connect(ui->scaleX_pb, SIGNAL(clicked()), this, SLOT(scaleClicked()));
     //QObject::connect(ui->scaleY_pb, SIGNAL(clicked()), this, SLOT(scaleClicked()));
     //QObject::connect(ui->origin_pb, SIGNAL(clicked()), this, SLOT(originClicked()));
+    socket = new QTcpSocket();
+    server = new QTcpServer();
 
     //QObject::connect(ui->saveFP, SIGNAL(clicked()), this, SLOT(saveFPClicked()));
     QObject::connect(ui->gridShow, SIGNAL(clicked()), this, SLOT(gridShowClicked()));
@@ -69,7 +73,18 @@ ViewSettingsWidget::ViewSettingsWidget(QWidget *parent) :
 
     QObject::connect(ui->logging_pb, SIGNAL(clicked()), this, SLOT(loggingClicked()));
 
+
+    //TCP
+    QObject::connect(socket, &QTcpSocket::readyRead, this, &ViewSettingsWidget::socket_Read_Data);
+    QObject::connect(socket, &QTcpSocket::disconnected, this, &ViewSettingsWidget::socket_Disconnected);
+    QObject::connect(server,&QTcpServer::newConnection,this,&ViewSettingsWidget::server_New_Connect);
+    QObject::connect(ui->pushButton_send,&QPushButton::clicked,this,&ViewSettingsWidget::on_pushButton_Send_clicked);
+    QObject::connect(ui->pushButton_connect,&QPushButton::clicked,this,&ViewSettingsWidget::on_pushButton_Connect_clicked);
+
+    ui->pushButton_send->setEnabled(false);
+    ui->lineEdit_port->setText("8888");
     _logging = false ;
+
 
     ui->label_logfile->setText("");
     if(_logging)
@@ -291,6 +306,73 @@ void ViewSettingsWidget::loggingClicked(void)
     }
 }
 
+void ViewSettingsWidget::socket_Read_Data()
+{
+    QByteArray buffer;
+        //读取缓冲区数据
+        buffer = socket->readAll();
+        if(!buffer.isEmpty())
+        {
+
+        }
+}
+
+void ViewSettingsWidget::socket_Disconnected()
+{
+    ui->pushButton_send->setEnabled(false);
+    ui->pushButton_connect->setText("connect");
+}
+
+void ViewSettingsWidget::server_New_Connect()
+{
+
+    //获取客户端连接
+    socket = server->nextPendingConnection();
+    //连接QTcpSocket的信号槽，以读取新数据
+    QObject::connect(socket, &QTcpSocket::readyRead, this, &ViewSettingsWidget::socket_Read_Data);
+    QObject::connect(socket, &QTcpSocket::disconnected, this, &ViewSettingsWidget::socket_Disconnected);
+    //发送按键使能
+    ui->pushButton_send->setEnabled(true);
+
+    qDebug() << "A Client connect!";
+}
+
+void ViewSettingsWidget::on_pushButton_Send_clicked()
+{
+    QString msg = "sss";
+    socket->write(msg.toUtf8());
+    socket->flush();
+}
+
+void ViewSettingsWidget::on_pushButton_Connect_clicked()
+{
+    if(ui->pushButton_connect->text() == tr("connect"))
+    {
+        //从输入框获取端口号
+        int port = ui->lineEdit_port->text().toInt();
+
+        //监听指定的端口
+        if(!server->listen(QHostAddress::Any, port))
+        {
+            //若出错，则输出错误信息
+            qDebug()<<server->errorString();
+            return;
+        }
+        //修改按键文字
+        ui->pushButton_connect->setText("disconnect");
+        ui->pushButton_send->setEnabled(true);
+
+        //qDebug()<< "Listen succeessfully!";
+    }
+    else
+    {
+        socket->close();
+        ui->pushButton_connect->setText("connect");
+        ui->pushButton_send->setEnabled(false);
+    }
+
+}
+
 
 
 void ViewSettingsWidget::originClicked()
@@ -312,4 +394,6 @@ void ViewSettingsWidget::scaleClicked()
     QObject::connect(tool, SIGNAL(done()), tool, SLOT(deleteLater()));
     RTLSDisplayApplication::graphicsView()->setTool(tool);
 }
+
+
 
